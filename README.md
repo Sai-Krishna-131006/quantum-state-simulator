@@ -8,6 +8,7 @@ This demonstrates how qubit states are represented in Hilbert space and how meas
 ## Implemented Comcepts
 
 The simulator currently demonstrates the following fundamental concepts
+
 • Quantum state representation using complex vectors  
 • State normalization (⟨ψ|ψ⟩ = 1)  
 • Measurement probabilities using the **Born rule**  
