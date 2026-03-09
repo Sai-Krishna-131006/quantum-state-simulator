@@ -9,6 +9,7 @@ def plot_probabilities(p0, p1):
     plt.ylim(0,1)
     plt.title("Measurement Probabilities")
     plt.ylabel("Probability")
+    plt.grid(True)
     plt.show()
 
 
@@ -47,4 +48,5 @@ def plot_experiment(c0, c1):
     plt.bar(states, counts)
     plt.title("Simulated Measurement Results")
     plt.ylabel("Counts")
+    plt.grid(True)
     plt.show()

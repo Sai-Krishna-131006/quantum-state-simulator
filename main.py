@@ -2,7 +2,7 @@ import numpy as np
 from core.states import basis_states, normalize_state, density_matrix
 from core.operators import pauli_x, pauli_y, pauli_z
 from core.measurement import measurement_probabilities, expectation_value
-from visualization import plot_probabilities, plot_bloch, plot_experiment
+from experiments.visualization import plot_probabilities, plot_bloch, plot_experiment
 from experiments.experiment import simulate_measurements
 
 
