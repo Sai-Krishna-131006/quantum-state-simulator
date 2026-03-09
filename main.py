@@ -1,75 +1,59 @@
 import numpy as np
-import matplotlib.pyplot as plt
+from states import basis_states, normalize_state, density_matrix
+from operators import pauli_x, pauli_y, pauli_z
+from measurement import measurement_probabilities, expectation_value
+from visualization import plot_probabilities, plot_bloch, plot_experiment
+from experiment import simulate_measurements
 
 
-# -----------------------------
-# Basis States
-# -----------------------------
-def computational_basis():
-    zero = np.array([[1], [0]], dtype=complex)
-    one = np.array([[0], [1]], dtype=complex)
-    return zero, one
-
-
-# -----------------------------
-# Normalize State
-# -----------------------------
-def normalize_state(psi):
-    norm = np.sqrt(np.conjugate(psi.T) @ psi)
-    return psi / norm
-
-
-# -----------------------------
-# Measurement Probabilities
-# -----------------------------
-def measurement_probabilities(psi, zero, one):
-    P0 = zero @ np.conjugate(zero.T)
-    P1 = one @ np.conjugate(one.T)
-
-    prob0 = (np.conjugate(psi.T) @ P0 @ psi).real.item()
-    prob1 = (np.conjugate(psi.T) @ P1 @ psi).real.item()
-
-    return prob0, prob1
-
-
-# -----------------------------
-# Visualization
-# -----------------------------
-def plot_probabilities(prob0, prob1):
-    states = ['|0>', '|1>']
-    probs = [prob0, prob1]
-
-    plt.bar(states, probs)
-    plt.ylim(0, 1)
-    plt.title("Measurement Probabilities")
-    plt.ylabel("Probability")
-    plt.show()
-
-
-# -----------------------------
-# Main Execution
-# -----------------------------
 def main():
-    zero, one = computational_basis()
 
-    # Create arbitrary state
-    psi = np.array([[3], [4]], dtype=complex)
+    zero, one = basis_states()
 
-    # Normalize
+    # Example state
+    psi = np.array([[3],[4]], dtype=complex)
+
     psi = normalize_state(psi)
 
-    print("Normalized state:")
+    print("Normalized State:")
     print(psi)
 
-    # Compute probabilities
-    prob0, prob1 = measurement_probabilities(psi, zero, one)
+    # Measurement probabilities
+    p0, p1 = measurement_probabilities(psi, zero, one)
 
-    print("Probability of |0>:", prob0)
-    print("Probability of |1>:", prob1)
-    print("Sum:", prob0 + prob1)
+    print("Probability of |0>:", p0)
+    print("Probability of |1>:", p1)
 
-    # Plot
-    plot_probabilities(prob0, prob1)
+    # Simulated experiment
+    count0, count1 = simulate_measurements(p0, p1)
+
+    print("Measurement simulation (1000 shots):")
+    print("|0> count:", count0)
+    print("|1> count:", count1)
+
+    # Pauli operators
+    X = pauli_x()
+    Y = pauli_y()
+    Z = pauli_z()
+
+    # Expectation values
+    exp_x = expectation_value(psi, X)
+    exp_y = expectation_value(psi, Y)
+    exp_z = expectation_value(psi, Z)
+
+    print("Expectation <X>:", exp_x)
+    print("Expectation <Y>:", exp_y)
+    print("Expectation <Z>:", exp_z)
+
+    # Density matrix
+    rho = density_matrix(psi)
+    print("Density Matrix:")
+    print(rho)
+
+    # Visualization
+    plot_probabilities(p0, p1)
+    plot_bloch(exp_x, exp_y, exp_z)
+    plot_experiment(count0, count1)
 
 
 if __name__ == "__main__":
