@@ -54,6 +54,9 @@ These visualizations help interpret the geometric structure of qubit states.
 ## Project Structure
 quantum-state-simulator
 
+## Project Structure
+
+```
 quantum-state-simulator
 │
 ├── core/
@@ -69,7 +72,7 @@ quantum-state-simulator
 ├── requirements.txt     # Python dependencies
 └── README.md            # Project documentation
 
----
+```
 
 ## Example Output
 
