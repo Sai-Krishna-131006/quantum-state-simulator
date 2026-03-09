@@ -53,14 +53,37 @@ These visualizations help interpret the geometric structure of qubit states.
 
 ## Project Structure
 quantum-state-simulator
-├── main.py
-├── states.py
-├── operators.py
-├── measurement.py
-├── visualization.py
-├── experiment.py
-├── requirements.txt
-└── README.md
+
+quantum-state-simulator
+│
+├── core/
+│   ├── states.py        # Qubit state definitions and normalization
+│   ├── operators.py     # Pauli operators and observable matrices
+│   └── measurement.py   # Measurement probabilities and expectation values
+│
+├── experiments/
+│   ├── experiment.py    # Simulation of repeated quantum measurements
+│   └── visualization.py # Probability plots and Bloch vector visualization
+│
+├── main.py              # Entry point that runs the simulation
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
+
+---
+
+## Example Output
+
+### Measurement Probabilities (Born Rule)
+
+![Measurement Probabilities](images/probabilities.png)
+
+### Bloch Vector Representation
+
+![Bloch Vector](images/bloch_vector.png)
+
+### Simulated Measurement Results (1000 Shots)
+
+![Measurement Experiment](images/experiment.png)
 
 ---
 
