@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def plot_probabilities(p0, p1):
     states = ['|0>', '|1>']
@@ -25,8 +26,17 @@ def plot_bloch(x, y, z):
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
 
-    ax.set_title("Bloch Vector Representation")
+    u = np.linspace(0, 2*np.pi, 50)
+    v = np.linspace(0, np.pi, 50)
 
+    x_s = np.outer(np.cos(u), np.sin(v))
+    y_s = np.outer(np.sin(u), np.sin(v))
+    z_s = np.outer(np.ones(np.size(u)), np.cos(v))
+
+    ax.plot_wireframe(x_s, y_s, z_s, color='lightgray', alpha=0.3)
+
+    ax.set_title("Bloch Vector Representation")
+    plt.grid(True)
     plt.show()
 
 def plot_experiment(c0, c1):

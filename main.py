@@ -1,9 +1,9 @@
 import numpy as np
-from states import basis_states, normalize_state, density_matrix
-from operators import pauli_x, pauli_y, pauli_z
-from measurement import measurement_probabilities, expectation_value
+from core.states import basis_states, normalize_state, density_matrix
+from core.operators import pauli_x, pauli_y, pauli_z
+from core.measurement import measurement_probabilities, expectation_value
 from visualization import plot_probabilities, plot_bloch, plot_experiment
-from experiment import simulate_measurements
+from experiments.experiment import simulate_measurements
 
 
 def main():
